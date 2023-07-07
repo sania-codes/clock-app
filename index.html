@@ -1,0 +1,36 @@
+<body>
+    <audio id="myAudio">
+      <source src="assets/ticking-tok.mp3" type="audio/mpeg" />
+    </audio>
+    <center>
+      <section class="timer">
+        <h1><span id="mins">00</span>m : <span id="sec">00</span>s</h1>
+        <button onclick="startClock()">Start</button>
+        <button onclick="stopClock()">Reset</button>
+      </section>
+    </center>
+  </body>
+<script>
+    let myInterval;
+    function startClock() {
+      let seconds = 0;
+      myInterval = setInterval(() => {
+        document.getElementById("myAudio").play();
+        if (seconds == 59) {
+          document.getElementById("sec").innerText = "0";
+          seconds = 0;
+          return;
+        }
+        if (seconds < 9) {
+          document.getElementById("sec").innerText = `0${++seconds}`;
+        } else {
+          document.getElementById("sec").innerText = ++seconds;
+        }
+      }, 1000);
+    }
+    function stopClock() {
+      -clearInterval(myInterval);
+      document.getElementById("sec").innerText = "00";
+    }
+  </script>
+</html>
